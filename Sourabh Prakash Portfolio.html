@@ -1,0 +1,551 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sourabh Prakash Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap">
+<style>
+/* Layout: a streaming-style home screen. Sticky nav, a billboard hero, then reorderable rows of cards.
+   Dark by design: one cinematic look, every colour comes from the tokens below. */
+:root {
+  --bg: #0c0a0e;
+  --surface: #15121a;
+  --surface-2: #1e1a25;
+  --fg: #f5f1f2;
+  --muted: #aaa2ac;
+  --line: #2b2631;
+  --accent: #e5132b;
+  --accent-ink: #ffffff;
+  --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius: 6px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  padding-block: 0 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 60; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.wrap { max-width: 1240px; margin-inline: auto; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px));
+  background: linear-gradient(to bottom, rgba(12,10,14,.96), rgba(12,10,14,.82));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-in { max-width: 1240px; margin-inline: auto; display: flex; align-items: center; gap: 18px; }
+.brand { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: .06em; color: var(--accent); line-height: 1; background: none; border: 0; padding: 0; }
+.links { display: flex; gap: 4px; margin-left: 6px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.links::-webkit-scrollbar { display: none; }
+.links button { background: none; border: 0; padding: 6px 10px; color: var(--muted); font-size: .9rem; white-space: nowrap; border-radius: var(--radius); }
+.links button:hover { color: var(--fg); }
+.spacer { flex: 1; }
+.who { position: relative; }
+.who > button { display: flex; align-items: center; gap: 8px; background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 10px 4px 4px; }
+.avatar { width: 28px; height: 28px; border-radius: 4px; display: grid; place-items: center; font-family: var(--font-display); font-size: 1.15rem; color: #fff; background: var(--pc, var(--accent)); }
+.who-name { font-size: .88rem; }
+.menu { position: absolute; right: 0; top: calc(100% + 8px); width: min(300px, 86vw); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 6px; box-shadow: 0 18px 40px rgba(0,0,0,.6); }
+.menu button { width: 100%; display: flex; gap: 12px; align-items: center; text-align: left; background: none; border: 0; padding: 8px; border-radius: 4px; }
+.menu button:hover, .menu button[aria-checked="true"] { background: var(--surface-2); }
+.menu small { display: block; color: var(--muted); font-size: .78rem; line-height: 1.3; }
+@media (max-width: 720px) { .links, .who-name { display: none; } .who > button { padding: 4px; } }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative; isolation: isolate;
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding: clamp(40px, 8vw, 96px) max(16px, env(safe-area-inset-right, 0px)) clamp(40px, 7vw, 80px) max(16px, env(safe-area-inset-left, 0px));
+  background:
+    radial-gradient(900px 480px at 82% 10%, rgba(229,19,43,.34), transparent 65%),
+    radial-gradient(700px 420px at 8% 90%, rgba(185,139,255,.16), transparent 60%),
+    linear-gradient(180deg, #1a0710 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--line);
+}
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>"); }
+.hero-in { max-width: 1240px; margin-inline: auto; }
+.series { font-size: .8rem; letter-spacing: .42em; color: var(--muted); font-weight: 700; margin: 0 0 6px; }
+.series b { color: var(--accent); }
+.hero h1 { font-family: var(--font-display); font-weight: 400; margin: 0; font-size: clamp(3rem, 13.5vw, 12rem); line-height: .86; overflow-wrap: anywhere; letter-spacing: .02em; text-wrap: balance; }
+.fullname { margin: 10px 0 0; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; font-size: .85rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 18px 0 0; padding: 0; list-style: none; font-weight: 500; }
+.tags li + li::before { content: "•"; color: var(--accent); margin-right: 14px; }
+.intro { max-width: 62ch; font-size: 1.1rem; color: #e3dce0; margin: 18px 0 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid #ffffff33; border-radius: 3px; padding: 2px 9px; font-size: .82rem; color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.btn { display: inline-flex; align-items: center; gap: 9px; border: 0; border-radius: var(--radius); padding: 11px 22px; font-weight: 700; font-size: 1rem; text-decoration: none; }
+.btn svg { width: 18px; height: 18px; fill: currentColor; }
+.btn.primary { background: var(--fg); color: #0c0a0e; }
+.btn.primary:hover { background: #fff; }
+.btn.ghost { background: #6d6d6eb3; color: #fff; }
+.btn.ghost:hover { background: #6d6d6e80; }
+
+/* ---------- sections ---------- */
+main { display: flex; flex-direction: column; gap: 44px; padding-top: 40px; }
+.sec { min-width: 0; scroll-margin-top: 78px; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.sec-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: .04em; margin: 0; line-height: 1; }
+.sec-head span { color: var(--muted); font-size: .86rem; letter-spacing: .06em; text-transform: uppercase; }
+.row { position: relative; }
+.track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x proximity; padding: 4px 2px 16px; scrollbar-width: thin; scrollbar-color: #44404a transparent; }
+.track > * { scroll-snap-align: start; }
+.rbtn { display: none; position: absolute; top: 40%; z-index: 5; width: 40px; height: 80px; border: 0; background: rgba(12,10,14,.82); color: #fff; font-size: 1.6rem; border-radius: var(--radius); }
+.rbtn { opacity: 0; transition: opacity .15s; }
+.row:hover .rbtn, .rbtn:focus-visible { opacity: 1; }
+.rbtn.l { left: -6px; } .rbtn.r { right: -6px; }
+@media (hover: hover) and (min-width: 900px) { .rbtn { display: block; } }
+
+.card { flex: 0 0 min(80vw, 300px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; min-width: 0; text-align: left; padding: 0; }
+.card.wide { flex-basis: min(88vw, 470px); }
+.thumb { aspect-ratio: 16 / 9; position: relative; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;
+  background: radial-gradient(260px 160px at 85% 10%, color-mix(in srgb, var(--ac) 55%, transparent), transparent 70%), linear-gradient(135deg, var(--c1), var(--c2) 58%, var(--c3)); }
+.thumb .code { font-size: .74rem; letter-spacing: .22em; font-weight: 700; color: #ffffffcc; }
+.thumb .big { font-family: var(--font-display); font-size: clamp(1.7rem, 5vw, 2.3rem); line-height: .95; letter-spacing: .03em; text-wrap: balance; text-shadow: 0 2px 14px rgba(0,0,0,.5); }
+.thumb .mono { position: absolute; right: 12px; bottom: 6px; font-family: var(--font-display); font-size: 4.5rem; line-height: 1; color: #ffffff1c; }
+.cbody { padding: 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.cbody p { margin: 0; color: #d9d2d6; font-size: .93rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.chips li { font-size: .74rem; padding: 2px 8px; border-radius: 3px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+.run { margin-top: auto; font-size: .78rem; color: var(--muted); letter-spacing: .05em; }
+button.card:hover { border-color: #5a5460; transform: translateY(-2px); }
+button.card { transition: transform .15s, border-color .15s; }
+@media (prefers-reduced-motion: reduce) { button.card { transition: none; } button.card:hover { transform: none; } }
+.more { color: var(--accent); font-weight: 700; font-size: .88rem; }
+
+/* about */
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 14px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; min-width: 0; }
+.panel h3 { margin: 0 0 12px; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.entry + .entry { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.entry h4 { margin: 0; font-size: 1.02rem; }
+.entry .sub { color: var(--muted); font-size: .88rem; margin: 2px 0 0; }
+.entry .period { color: var(--accent); font-size: .8rem; letter-spacing: .06em; font-weight: 700; margin: 6px 0 0; }
+.entry ul { margin: 8px 0 0; padding-left: 18px; color: #d9d2d6; font-size: .93rem; }
+
+/* journey */
+.seasons { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
+.seasons::-webkit-scrollbar { display: none; }
+.seasons button { flex: none; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: .86rem; color: var(--muted); }
+.seasons button[aria-pressed="true"] { background: var(--fg); color: #0c0a0e; border-color: var(--fg); font-weight: 700; }
+.synopsis { color: #d9d2d6; max-width: 70ch; margin: 6px 0 14px; }
+.synopsis b { color: var(--fg); }
+
+/* skills */
+.skillcat + .skillcat { margin-top: 18px; }
+.skillcat h3 { margin: 0 0 8px; font-size: 1.02rem; }
+.skillcat h3 small { color: var(--muted); font-weight: 400; margin-left: 8px; font-size: .84rem; }
+.skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+@media (min-width: 900px) { .skills { grid-template-columns: repeat(var(--cols, 4), 1fr); } }
+.skill { display: flex; gap: 12px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; min-width: 0; }
+.skill .m { flex: none; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 4px; font-family: var(--font-display); font-size: 1.3rem; background: var(--surface-2); color: var(--accent); }
+.skill b { display: block; font-size: .95rem; line-height: 1.25; }
+.skill small { display: block; color: var(--muted); font-size: .78rem; margin-top: 3px; line-height: 1.35; }
+
+/* resume */
+.resume { display: grid; gap: 14px; }
+.resume .lead { font-size: 1.02rem; color: #e3dce0; max-width: 75ch; margin: 0; }
+.rtop { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px; font-size: .9rem; text-decoration: none; }
+button.pill:hover, a.pill:hover { border-color: #5a5460; }
+
+footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+footer .em { color: var(--fg); user-select: all; }
+
+/* ---------- overlays ---------- */
+.scrim { position: fixed; inset: 0; z-index: 100; background: rgba(5,4,7,.86); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); overflow-y: auto; }
+.modal { width: min(100%, 720px); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; position: relative; margin-block: auto; }
+.modal .thumb { aspect-ratio: 16 / 6; padding: 18px; }
+.modal .thumb .big { font-size: clamp(2.2rem, 7vw, 3.6rem); }
+.mbody { padding: 20px; display: grid; gap: 14px; }
+.mbody h3 { margin: 0 0 6px; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.mbody ul:not(.chips) { margin: 0; padding-left: 18px; }
+.mbody ul:not(.chips) li + li { margin-top: 6px; }
+.x { position: absolute; top: 10px; right: 10px; z-index: 3; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(12,10,14,.8); color: #fff; font-size: 1.3rem; line-height: 1; }
+
+.intro-o { position: fixed; inset: 0; z-index: 110; background: #050407; color: var(--fg); display: flex; flex-direction: column; }
+.stage { flex: 1; display: grid; place-items: center; text-align: center; padding: 24px max(24px, env(safe-area-inset-right, 0px)) 24px max(24px, env(safe-area-inset-left, 0px)); background: radial-gradient(700px 420px at 50% 40%, rgba(229,19,43,.2), transparent 70%); }
+.slide { max-width: 860px; animation: rise .6s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .slide { animation: none; } }
+.slide .k { letter-spacing: .4em; text-transform: uppercase; color: var(--accent); font-weight: 700; font-size: .8rem; margin: 0 0 10px; }
+.slide h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(3rem, 11vw, 7rem); line-height: .92; margin: 0; letter-spacing: .02em; text-wrap: balance; }
+.slide p.l { color: #d9d2d6; font-size: clamp(1rem, 2.4vw, 1.3rem); margin: 8px 0 0; }
+.slide .chips { justify-content: center; margin-top: 18px; }
+.slide.studio h2 { font-size: clamp(2.2rem, 8vw, 5rem); letter-spacing: .14em; color: var(--accent); }
+.ibar { display: flex; align-items: center; gap: 12px; padding: 14px max(16px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.dots { flex: 1; display: flex; gap: 4px; }
+.dots i { flex: 1; height: 3px; background: #3a3540; border-radius: 2px; }
+.dots i.on { background: var(--accent); }
+.dots i.done { background: #8c838f; }
+.ibar button { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 7px 12px; font-size: .86rem; }
+.toast { position: fixed; left: 50%; bottom: max(24px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: #0c0a0e; padding: 8px 16px; border-radius: 999px; font-weight: 700; font-size: .9rem; z-index: 200; }
+</style>
+
+<div class="wrap" id="app">
+  <nav class="nav" aria-label="Sections">
+    <div class="nav-in">
+      <button class="brand" id="brand" aria-label="Back to top">SOURABH</button>
+      <div class="links" id="links"></div>
+      <div class="spacer"></div>
+      <div class="who" id="who"></div>
+    </div>
+  </nav>
+  <header class="hero" id="hero"></header>
+  <main id="main"></main>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+/* ===== Data: every fact on this page comes from Sourabh's CV. Nothing is added that the CV doesn't say. ===== */
+var P = {
+  name: 'Sourabh Prakash', first: 'SOURABH', studio: 'A SOURABH ORIGINAL',
+  role: 'Business Analyst', tagline: ['Business Analyst', 'Project Operations', 'Functional Trainee'],
+  intro: 'An MBA (Marketing & Finance) student with a technical BCA foundation, looking to bridge technology teams and business clients. Experienced in primary research, data analysis, project management, documentation and reporting.',
+  location: 'Lucknow, Uttar Pradesh', email: 'sourabhprakash530@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/sourabh-ji-678bb41b6',
+  facts: ['MBA 2025 – 2027', 'BCA 2021 – 2024', 'NMAT 162', 'Hybrid roles', 'Open to Lucknow · Delhi NCR · Noida · Bengaluru']
+};
+var PAL = {
+  crimson: { c1: '#24060b', c2: '#6e0d1d', c3: '#09070a', ac: '#ff3d5a' },
+  amber:   { c1: '#1c1003', c2: '#6b3c06', c3: '#0a0806', ac: '#ffb547' },
+  ocean:   { c1: '#04121f', c2: '#0f4c6e', c3: '#05080d', ac: '#4cc9ff' },
+  violet:  { c1: '#120822', c2: '#3d1a6e', c3: '#07060c', ac: '#b98bff' },
+  jade:    { c1: '#03150f', c2: '#0d5a40', c3: '#050a08', ac: '#46e3a8' }
+};
+var EDU = [
+  { school: 'Babu Banarasi Das University', place: 'Lucknow', degree: 'MBA, Marketing & Finance', period: '2025 – 2027', score: 'NMAT score 162' },
+  { school: 'Khawaja Moinuddin Chishti Language University', place: 'Lucknow', degree: 'Bachelor of Computer Applications (BCA)', period: '2021 – 2024' },
+  { school: 'Maharishi University of Information Technology', place: 'Lucknow', degree: 'Diploma in Civil Engineering', period: '2019 – 2021' }
+];
+var EXP = [
+  { org: 'V Mart Retail Ltd.', role: 'Retail Operations & Sales Intern', place: 'Lucknow', period: 'Jun 2026 – Aug 2026', points: ['Delivered the project “Retail Business Operations: Fashion & FMCG at V-MART”, studying store operations, sales and category management.'] },
+  { org: 'Educational Institution', role: 'Teaching Intern', period: '11 months', points: ['Managed classroom activities, delivered structured lessons and developed engagement materials.'] },
+  { org: 'Technical Project Placement', role: 'BCA Intern', period: '2024', points: ['Contributed to software and system development tasks and team-based technical assignments.'] }
+];
+var PROJECTS = [
+  { id: 'ai-trading', title: 'AI in Online Stock Trading', year: '2025', genre: 'Primary Research • Survey • Finance',
+    logline: 'An independent MBA research study on the awareness and usage of artificial intelligence in online stock trading among young investors.',
+    stack: ['Primary research', 'Survey design', 'Data analysis', 'AI tools'],
+    did: ['Led the study independently from start to finish.', 'Designed the surveys and collected the primary data.', 'Analyzed adoption patterns of AI tools among young investors.'],
+    focus: ['Young investors', 'Online stock trading', 'AI adoption'], pal: 'crimson', mono: 'AI' },
+  { id: 'pricing-vmart', title: 'Pricing Strategy, Margin & Volume', year: '2026', genre: 'Retail • Pricing • Analysis',
+    logline: 'A study of how pricing strategy affects margin and sales volume in retail, carried out at V Mart.',
+    stack: ['Pricing strategy', 'Retail margins', 'Sales volume'],
+    did: ['Examined how pricing strategies affect retail margins and sales volumes at V Mart.'],
+    focus: ['V Mart', 'Margin', 'Volume'], pal: 'amber', mono: '₹' }
+];
+var SKILLS = [
+  { id: 'ba', title: 'Business Analysis', sub: 'The core toolkit', items: [['Data Analysis','Da'],['Market Research','Mr'],['Documentation','Dc'],['Reporting','Rp'],['Project Management','Pm'],['Business Strategy','Bs']] },
+  { id: 'tech', title: 'Technical', sub: 'The BCA foundation', items: [['Programming & IT (BCA)','It'],['MS Office Suite','Of'],['Advanced Excel','Xl'],['AI Tools','Ai']] },
+  { id: 'people', title: 'Interpersonal', sub: 'Working with teams and clients', items: [['Stakeholder Communication','Sc'],['Leadership','Ld'],['Critical Thinking','Ct'],['Problem Solving','Ps']] },
+  { id: 'domain', title: 'Domain', sub: 'Where the training and internships sit', items: [['Marketing','Mk'],['Finance','Fn'],['Retail Operations','Ro']] }
+];
+var EVIDENCE = {
+  'Data Analysis': 'AI in online stock trading study · Pricing strategy study',
+  'Market Research': 'AI in online stock trading study (primary research)',
+  'Leadership': 'Led the independent stock trading research study',
+  'AI Tools': 'Studied AI tool adoption in the trading research',
+  'Programming & IT (BCA)': 'BCA degree · BCA Intern placement',
+  'Marketing': 'MBA specialization',
+  'Finance': 'MBA specialization · stock trading research',
+  'Retail Operations': 'V Mart internship'
+};
+var SEASONS = [
+  { n: 1, title: 'The Foundation', period: '2019 – 2021', syn: 'A Diploma in Civil Engineering at Maharishi University of Information Technology, Lucknow.',
+    eps: [{ t: 'The Engineer’s Start', d: 'Diploma in Civil Engineering, Maharishi University of Information Technology, Lucknow.', tags: ['Diploma', 'Civil Engineering'], run: '2019 – 2021', pal: 'amber' }] },
+  { n: 2, title: 'Enter: Code', period: '2021 – 2024', syn: 'A Bachelor of Computer Applications at Khawaja Moinuddin Chishti Language University, Lucknow, and a technical placement.',
+    eps: [
+      { t: 'The Pivot', d: 'BCA, the technical foundation behind the programming and IT skills on the CV.', tags: ['BCA', 'Programming', 'IT'], run: '2021 – 2024', pal: 'ocean' },
+      { t: 'The Placement', d: 'BCA Intern on a technical project: software and system development tasks and team-based technical assignments.', tags: ['BCA Intern', 'Software', 'Teamwork'], run: '2024', pal: 'violet' }] },
+  { n: 3, title: 'Learning by Doing', period: 'Internships', syn: 'Two internships outside the classroom: eleven months of teaching and a retail operations internship at V Mart.',
+    eps: [
+      { t: 'The Teacher', d: 'Teaching Intern. Managed classroom activities, delivered structured lessons and developed engagement materials.', tags: ['Teaching', 'Communication'], run: '11 months', pal: 'jade' },
+      { t: 'The Operator', d: 'Retail Operations & Sales Intern at V Mart. Studied store operations, sales and category management.', tags: ['Retail', 'Sales', 'Category management'], run: 'Jun – Aug 2026', pal: 'amber' }] },
+  { n: 4, title: 'Enter: Business', period: '2025 – 2027', syn: 'An MBA in Marketing & Finance at Babu Banarasi Das University, Lucknow, with two research projects.',
+    eps: [
+      { t: 'The MBA', d: 'MBA in Marketing & Finance, combining the technical background with business training.', tags: ['Marketing', 'Finance'], run: '2025 – 2027', pal: 'crimson' },
+      { t: 'The Researcher', d: 'Led an independent study of AI usage in online stock trading among young investors: surveys, primary data, adoption patterns.', tags: ['Research', 'Surveys', 'AI'], run: '2025', pal: 'violet' },
+      { t: 'The Strategist', d: 'Examined how pricing strategies affect retail margins and sales volumes at V Mart.', tags: ['Pricing', 'Margin', 'Volume'], run: '2026', pal: 'ocean' },
+      { t: 'The Score', d: 'NMAT score of 162.', tags: ['NMAT'], run: '162', pal: 'jade' }] },
+  { n: 5, title: 'What’s Next', period: 'Now streaming', syn: 'The next arc is a first full role that sits between technology teams and business clients.',
+    eps: [{ t: 'The Next Chapter', d: 'Looking for Business Analyst, Project Operations, Functional Trainee or Data Analyst roles. Hybrid preferred, open to Lucknow, Delhi NCR, Noida and Bengaluru.', tags: ['Business Analyst', 'Project Operations', 'Functional Trainee', 'Data Analyst'], run: 'Open to offers', pal: 'crimson' }] }
+];
+var PICKS = [
+  { label: 'Entrance score', title: 'NMAT 162', detail: 'MBA admission test', pal: 'jade' },
+  { label: 'Current degree', title: 'MBA', detail: 'Marketing & Finance, 2025 – 2027', pal: 'crimson' },
+  { label: 'The tech base', title: 'BCA', detail: 'Computer Applications, 2021 – 2024', pal: 'ocean' },
+  { label: 'Latest internship', title: 'V Mart', detail: 'Retail Operations & Sales, Jun – Aug 2026', pal: 'amber' },
+  { label: 'Research', title: 'AI in Trading', detail: 'Independent study with primary data', pal: 'violet' },
+  { label: 'Longest role', title: '11 months', detail: 'Teaching Intern', pal: 'jade' },
+  { label: 'Spreadsheet skills', title: 'Advanced Excel', detail: 'Listed under technical skills', pal: 'amber' }
+];
+var INTRO = [
+  { k: 'Education', t: 'MBA · Marketing & Finance', l: ['Babu Banarasi Das University, Lucknow', '2025 – 2027'], c: ['NMAT 162'] },
+  { k: 'Foundation', t: 'BCA first.', l: ['Computer Applications, 2021 – 2024', 'After a Diploma in Civil Engineering'], c: ['Programming & IT', 'BCA Intern 2024'] },
+  { k: 'Experience', t: 'Learning by Doing', l: ['Retail Operations & Sales Intern at V Mart', 'Teaching Intern for 11 months'] },
+  { k: 'Projects', t: 'Two Originals', l: ['AI in Online Stock Trading', 'Pricing Strategy, Margin & Volume at V Mart'] },
+  { k: 'Skills', t: 'Analysis with context', l: ['Data Analysis · Market Research · Reporting', 'Advanced Excel · AI Tools · Stakeholder Communication'] },
+  { k: 'Now', t: 'Open to roles', l: ['Business Analyst · Project Operations · Functional Trainee', 'Hybrid · Lucknow, Delhi NCR, Noida, Bengaluru'] }
+];
+var SEC = {
+  about:     { nav: 'About',   title: 'About Me',       meta: 'The Pilot · Education & experience' },
+  journey:   { nav: 'Journey', title: 'My Journey',     meta: SEASONS.length + ' seasons · ' + SEASONS.reduce(function (n, s) { return n + s.eps.length; }, 0) + ' episodes' },
+  originals: { nav: 'Originals', title: 'My Projects',  meta: PROJECTS.length + ' originals' },
+  picks:     { nav: 'Top Picks', title: 'Top Picks',    meta: 'Highlights from the CV' },
+  skills:    { nav: 'Skills',  title: 'My Skills',      meta: SKILLS.length + ' categories' },
+  story:     { nav: 'Resume',  title: 'The Full Story', meta: 'Resume at a glance' }
+};
+var VIEWERS = [
+  { id: 'sourabh', name: 'Sourabh', blurb: 'The full series, in order', color: '#e5132b', order: ['about','journey','originals','picks','skills','story'] },
+  { id: 'recruiter', name: 'Recruiter', blurb: 'Resume and skills first', color: '#2fa8d8', order: ['story','skills','originals','about','journey','picks'] },
+  { id: 'analyst', name: 'Hiring manager', blurb: 'Projects and skills first', color: '#2fbf8c', order: ['originals','skills','about','story','journey','picks'] },
+  { id: 'story', name: 'Storyteller', blurb: 'The journey and highlights first', color: '#e09a2c', order: ['journey','picks','originals','about','skills','story'] }
+];
+
+/* ===== helpers ===== */
+var $ = function (s, r) { return (r || document).querySelector(s); };
+var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var pv = function (k) { var p = PAL[k]; return '--c1:' + p.c1 + ';--c2:' + p.c2 + ';--c3:' + p.c3 + ';--ac:' + p.ac; };
+var chips = function (a) { return '<ul class="chips">' + a.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>'; };
+var store = {
+  get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+function toast(msg) {
+  var t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg;
+  document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1800);
+}
+function copyText(text, label) {
+  var done = function () { toast(label + ' copied'); };
+  var fallback = function () {
+    var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) { toast('Select the text to copy it'); }
+    ta.remove();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+var PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+
+/* ===== render: hero, nav ===== */
+$('#hero').innerHTML =
+  '<div class="hero-in">' +
+  '<p class="series"><b>THE</b> SERIES</p>' +
+  '<h1>' + P.first + '</h1>' +
+  '<p class="fullname">' + P.name + ' · ' + P.location + '</p>' +
+  '<ul class="tags">' + P.tagline.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+  '<p class="intro">' + P.intro + '</p>' +
+  '<ul class="facts">' + P.facts.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>' +
+  '<div class="cta">' +
+  '<button class="btn primary" id="play">' + PLAY + 'Play Intro</button>' +
+  '<button class="btn ghost" id="more">More Info</button>' +
+  '<a class="btn ghost" href="' + P.linkedin + '" target="_blank" rel="noopener">LinkedIn</a>' +
+  '</div></div>';
+
+/* ===== render: sections ===== */
+function rowShell(inner) {
+  return '<div class="row"><button class="rbtn l" aria-label="Scroll left">‹</button><div class="track">' + inner + '</div><button class="rbtn r" aria-label="Scroll right">›</button></div>';
+}
+function head(id) { return '<div class="sec-head"><h2>' + SEC[id].title + '</h2><span>' + SEC[id].meta + '</span></div>'; }
+
+var builders = {
+  about: function () {
+    var edu = EDU.map(function (e) {
+      return '<div class="entry"><h4>' + e.degree + '</h4><p class="sub">' + e.school + ', ' + e.place + '</p><p class="period">' + e.period + (e.score ? ' · ' + e.score : '') + '</p></div>';
+    }).join('');
+    var exp = EXP.map(function (e) {
+      return '<div class="entry"><h4>' + e.role + '</h4><p class="sub">' + e.org + (e.place ? ', ' + e.place : '') + '</p><p class="period">' + e.period + '</p><ul>' + e.points.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul></div>';
+    }).join('');
+    return head('about') + '<div class="about-grid"><div class="panel"><h3>Education</h3>' + edu + '</div><div class="panel"><h3>Experience</h3>' + exp + '</div></div>';
+  },
+  journey: function () {
+    return head('journey') + '<div class="seasons" id="seasons" role="group" aria-label="Seasons"></div><div id="synopsis" class="synopsis"></div><div id="episodes"></div>';
+  },
+  originals: function () {
+    var cards = PROJECTS.map(function (p, i) {
+      return '<button class="card wide" data-proj="' + i + '" style="' + pv(p.pal) + '">' +
+        '<div class="thumb"><span class="code">' + p.genre.toUpperCase() + ' · ' + p.year + '</span><span class="big">' + p.title + '</span><span class="mono" aria-hidden="true">' + p.mono + '</span></div>' +
+        '<div class="cbody"><p>' + p.logline + '</p>' + chips(p.stack) + '<span class="more">View details →</span></div></button>';
+    }).join('');
+    return head('originals') + rowShell(cards);
+  },
+  picks: function () {
+    var cards = PICKS.map(function (p) {
+      return '<div class="card" style="' + pv(p.pal) + '"><div class="thumb"><span class="code">' + p.label.toUpperCase() + '</span><span class="big">' + p.title + '</span></div><div class="cbody"><p>' + p.detail + '</p></div></div>';
+    }).join('');
+    return head('picks') + rowShell(cards);
+  },
+  skills: function () {
+    var cats = SKILLS.map(function (c) {
+      var items = c.items.map(function (s) {
+        var ev = EVIDENCE[s[0]];
+        return '<div class="skill"><span class="m" aria-hidden="true">' + s[1] + '</span><div><b>' + s[0] + '</b>' + (ev ? '<small>Seen in: ' + ev + '</small>' : '') + '</div></div>';
+      }).join('');
+      return '<div class="skillcat"><h3>' + c.title + '<small>' + c.sub + '</small></h3><div class="skills" style="--cols:' + (c.items.length === 6 ? 3 : Math.min(c.items.length, 4)) + '">' + items + '</div></div>';
+    }).join('');
+    return head('skills') + cats;
+  },
+  story: function () {
+    return head('story') +
+      '<div class="resume"><p class="lead">' + P.intro + '</p>' +
+      '<div class="rtop"><button class="pill" id="copyEmail">Copy email</button><button class="pill" id="copyResume">Copy resume as text</button><a class="pill" href="' + P.linkedin + '" target="_blank" rel="noopener">LinkedIn profile</a></div>' +
+      '<div class="about-grid"><div class="panel"><h3>Target roles</h3>' + chips(['Business Analyst', 'Project Operations Trainee', 'Functional Trainee', 'Data Analyst']) +
+      '<p class="sub" style="color:var(--muted);margin:12px 0 0;font-size:.9rem">Entry level, MBA graduate · hybrid · relocation open to Lucknow, Delhi NCR, Noida and Bengaluru.</p></div>' +
+      '<div class="panel"><h3>Contact</h3><p style="margin:0">Email: <span class="em" style="user-select:all">' + P.email + '</span></p><p style="margin:6px 0 0;color:var(--muted)">' + P.location + '</p></div></div></div>';
+  }
+};
+
+var main = $('#main');
+Object.keys(builders).forEach(function (id) {
+  var s = document.createElement('section'); s.className = 'sec'; s.id = 'sec-' + id; s.dataset.id = id;
+  s.innerHTML = builders[id](); main.appendChild(s);
+});
+
+/* journey: season tabs + episode row */
+var curSeason = 0;
+function renderSeason() {
+  var s = SEASONS[curSeason];
+  $('#seasons').innerHTML = SEASONS.map(function (x, i) {
+    return '<button data-s="' + i + '" aria-pressed="' + (i === curSeason) + '">S' + x.n + ' · ' + x.title + '</button>';
+  }).join('');
+  $('#synopsis').innerHTML = '<b>' + s.period + '.</b> ' + s.syn;
+  $('#episodes').innerHTML = rowShell(s.eps.map(function (e, i) {
+    var code = 'S0' + s.n + ' E0' + (i + 1);
+    return '<div class="card" style="' + pv(e.pal) + '"><div class="thumb"><span class="code">' + code + '</span><span class="big">' + e.t + '</span></div><div class="cbody"><p>' + e.d + '</p>' + chips(e.tags) + '<span class="run">' + e.run + '</span></div></div>';
+  }).join(''));
+  wireRows($('#episodes'));
+}
+$('#seasons').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-s]'); if (!b) return; curSeason = +b.dataset.s; renderSeason();
+});
+
+/* rows: scroll buttons */
+function wireRows(root) {
+  $$('.row', root).forEach(function (r) {
+    var t = $('.track', r);
+    $('.rbtn.l', r).onclick = function () { t.scrollBy({ left: -t.clientWidth * .85, behavior: reduce ? 'auto' : 'smooth' }); };
+    $('.rbtn.r', r).onclick = function () { t.scrollBy({ left: t.clientWidth * .85, behavior: reduce ? 'auto' : 'smooth' }); };
+  });
+}
+
+/* viewer profiles: reorder sections, nav links */
+var viewer = VIEWERS[0];
+function applyViewer(v) {
+  viewer = v; store.set('sp-viewer', v.id);
+  $$('.sec').forEach(function (s) { s.style.order = v.order.indexOf(s.dataset.id); });
+  $('#links').innerHTML = v.order.map(function (id) { return '<button data-go="' + id + '">' + SEC[id].nav + '</button>'; }).join('');
+  $('#who').innerHTML =
+    '<button id="whoBtn" aria-haspopup="menu" aria-expanded="false"><span class="avatar" style="--pc:' + v.color + '">' + v.name.charAt(0) + '</span><span class="who-name">' + v.name + '</span></button>' +
+    '<div class="menu" id="menu" role="menu" aria-label="Choose a viewer profile" hidden>' +
+    VIEWERS.map(function (x) {
+      return '<button role="menuitemradio" aria-checked="' + (x.id === v.id) + '" data-v="' + x.id + '"><span class="avatar" style="--pc:' + x.color + '">' + x.name.charAt(0) + '</span><span><b>' + x.name + '</b><small>' + x.blurb + '</small></span></button>';
+    }).join('') + '</div>';
+}
+function goTo(id) { var el = $('#sec-' + id); if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
+document.addEventListener('click', function (e) {
+  var go = e.target.closest('[data-go]'); if (go) { goTo(go.dataset.go); return; }
+  var wb = e.target.closest('#whoBtn');
+  var menu = $('#menu');
+  if (wb) { var open = menu.hidden; menu.hidden = !open; wb.setAttribute('aria-expanded', String(open)); return; }
+  var vb = e.target.closest('[data-v]');
+  if (vb) { applyViewer(VIEWERS.filter(function (x) { return x.id === vb.dataset.v; })[0]); toast('Watching as ' + viewer.name); return; }
+  if (menu && !menu.hidden && !e.target.closest('#who')) { menu.hidden = true; var b = $('#whoBtn'); if (b) b.setAttribute('aria-expanded', 'false'); }
+  var pj = e.target.closest('[data-proj]'); if (pj) { openProject(PROJECTS[+pj.dataset.proj]); return; }
+  if (e.target.closest('#play')) { openIntro(); return; }
+  if (e.target.closest('#more')) { goTo('story'); return; }
+  if (e.target.closest('#brand')) { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
+  if (e.target.closest('#copyEmail')) { copyText(P.email, 'Email'); return; }
+  if (e.target.closest('#copyResume')) { copyText(resumeText(), 'Resume'); return; }
+});
+
+function resumeText() {
+  var L = [P.name + ' · ' + P.role, P.location + ' · ' + P.email, '', 'SUMMARY', P.intro, '', 'EDUCATION'];
+  EDU.forEach(function (e) { L.push('- ' + e.degree + ', ' + e.school + ', ' + e.place + ' (' + e.period + ')' + (e.score ? ' · ' + e.score : '')); });
+  L.push('', 'EXPERIENCE');
+  EXP.forEach(function (e) { L.push('- ' + e.role + ', ' + e.org + ' (' + e.period + ')'); e.points.forEach(function (p) { L.push('  ' + p); }); });
+  L.push('', 'PROJECTS');
+  PROJECTS.forEach(function (p) { L.push('- ' + p.title + ' (' + p.year + '): ' + p.logline); });
+  L.push('', 'SKILLS');
+  SKILLS.forEach(function (c) { L.push(c.title + ': ' + c.items.map(function (s) { return s[0]; }).join(', ')); });
+  return L.join('\n');
+}
+
+/* ===== overlays ===== */
+var lastFocus = null;
+function openScrim(inner, cls) {
+  lastFocus = document.activeElement;
+  var s = document.createElement('div'); s.className = 'scrim'; s.innerHTML = inner;
+  s.addEventListener('click', function (e) { if (e.target === s || e.target.closest('.x')) closeScrim(); });
+  document.body.appendChild(s); document.body.style.overflow = 'hidden';
+  var x = $('.x', s); if (x) x.focus();
+  return s;
+}
+function closeScrim() {
+  var s = $('.scrim'); if (s) s.remove();
+  document.body.style.overflow = ''; if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+function openProject(p) {
+  openScrim('<div class="modal" role="dialog" aria-modal="true" aria-label="' + p.title + '"><button class="x" aria-label="Close">×</button>' +
+    '<div class="thumb" style="' + pv(p.pal) + '"><span class="code">' + p.genre.toUpperCase() + ' · ' + p.year + '</span><span class="big">' + p.title + '</span><span class="mono" aria-hidden="true">' + p.mono + '</span></div>' +
+    '<div class="mbody"><p style="margin:0;font-size:1.05rem">' + p.logline + '</p>' +
+    '<div><h3>What I did</h3><ul>' + p.did.map(function (d) { return '<li>' + d + '</li>'; }).join('') + '</ul></div>' +
+    '<div><h3>Methods & tools</h3>' + chips(p.stack) + '</div><div><h3>Focus</h3>' + chips(p.focus) + '</div></div></div>');
+}
+
+var introTimer = null, introIdx = 0, introPaused = false;
+function openIntro() {
+  var slides = [{ studio: true }].concat(INTRO);
+  introIdx = 0; introPaused = reduce;
+  var s = document.createElement('div'); s.className = 'intro-o'; s.setAttribute('role', 'dialog'); s.setAttribute('aria-modal', 'true'); s.setAttribute('aria-label', 'Intro');
+  lastFocus = document.activeElement;
+  s.innerHTML = '<div class="stage" id="stage" aria-live="polite"></div><div class="ibar"><div class="dots" id="dots"></div><button id="ip">' + (introPaused ? 'Play' : 'Pause') + '</button><button id="ib">Back</button><button id="in">Next</button><button id="ix">Skip</button></div>';
+  document.body.appendChild(s); document.body.style.overflow = 'hidden';
+  function draw() {
+    var sl = slides[introIdx];
+    $('#stage').innerHTML = sl.studio
+      ? '<div class="slide studio"><p class="k">Presents</p><h2>' + P.studio + '</h2><p class="l">' + P.name + ' · The Series</p></div>'
+      : '<div class="slide"><p class="k">' + sl.k + '</p><h2>' + sl.t + '</h2>' + sl.l.map(function (x) { return '<p class="l">' + x + '</p>'; }).join('') + (sl.c ? chips(sl.c) : '') + '</div>';
+    $('#dots').innerHTML = slides.map(function (_, i) { return '<i class="' + (i < introIdx ? 'done' : i === introIdx ? 'on' : '') + '"></i>'; }).join('');
+  }
+  function step(d) { introIdx = Math.max(0, Math.min(slides.length - 1, introIdx + d)); draw(); }
+  function end() { clearInterval(introTimer); document.removeEventListener('keydown', key); s.remove(); document.body.style.overflow = ''; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  function key(e) { if (e.key === 'Escape') end(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1); }
+  document.addEventListener('keydown', key);
+  $('#in').onclick = function () { step(1); }; $('#ib').onclick = function () { step(-1); }; $('#ix').onclick = end;
+  $('#ip').onclick = function () { introPaused = !introPaused; this.textContent = introPaused ? 'Play' : 'Pause'; };
+  introTimer = setInterval(function () { if (introPaused) return; if (introIdx >= slides.length - 1) { introPaused = true; $('#ip').textContent = 'Play'; return; } step(1); }, 4200);
+  draw(); $('#ix').focus();
+}
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  var menu = $('#menu'); if (menu && !menu.hidden) { menu.hidden = true; $('#whoBtn').setAttribute('aria-expanded', 'false'); }
+  if ($('.scrim')) closeScrim();
+});
+
+/* ===== footer + boot ===== */
+$('#foot').innerHTML = '<span>© ' + P.name + ' · ' + P.location + '</span><span>Email <span class="em">' + P.email + '</span></span>';
+renderSeason(); wireRows(document);
+var saved = store.get('sp-viewer');
+applyViewer(VIEWERS.filter(function (x) { return x.id === saved; })[0] || VIEWERS[0]);
+</script>
+
+</body></html>
